@@ -1,0 +1,42 @@
+{
+	"name": "license-forge",
+	"version": "0.0.1",
+	"description": "Utility for managing licenses",
+	"type": "commonjs",
+	"main": "dist/cli.js",
+	"types": "dist/cli.d.ts",
+	"files": [ "dist" ],
+	"bin": {
+		"license-forge": "dist/cli.js"
+	},
+	"author": "Erlin Emrys",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ErlinEmrys/Npm.Utils.LicenseForge/issues"
+	},
+	"homepage": "https://github.com/ErlinEmrys/Npm.Utils.LicenseForge#README",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ErlinEmrys/Npm.Utils.LicenseForge.git"
+	},
+	"keywords": [
+		"license",
+		"licence",
+		"third",
+		"party",
+		"generate",
+		"file"
+	],
+	"scripts": {
+		"build": "tsc"
+	},
+	"dependencies": {
+		"@commander-js/extra-typings": "14.0.0",
+		"commander": "14.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "22.15.29",
+		"ts-node": "10.9.2",
+		"typescript": "5.8.3"
+	}
+}
