@@ -1,15 +1,15 @@
 {
 	"compilerOptions": {
 		"target": "es2017",
-		"module": "commonjs",
-		"outDir": "./dist",
 		"rootDir": "./src",
+		"module": "commonjs",
+		"strict": true,
 		"declaration": true,
+		"outDir": "./dist",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"strict": true,
 		"skipLibCheck": true
 	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "dist"]
+	"include": [ "src/**/*" ],
+	"exclude": [ "node_modules", "dist" ]
 }

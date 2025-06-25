@@ -1,25 +1,22 @@
 {
 	"name": "license-forge",
+	"type": "module",
 	"version": "0.0.1",
 	"description": "Utility for managing licenses",
-	"type": "module",
-	"main": "dist/cli.js",
-	"types": "dist/cli.d.ts",
-	"files": [ "dist" ],
-	"bin": {
-		"license-forge": "dist/cli.js"
-	},
 	"author": "Erlin Emrys",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/ErlinEmrys/Npm.Utils.LicenseForge/issues"
-	},
 	"homepage": "https://github.com/ErlinEmrys/Npm.Utils.LicenseForge#README",
-	"repository": {
+	"repository":
+	{
 		"type": "git",
 		"url": "git+https://github.com/ErlinEmrys/Npm.Utils.LicenseForge.git"
 	},
-	"keywords": [
+	"bugs":
+	{
+		"url": "https://github.com/ErlinEmrys/Npm.Utils.LicenseForge/issues"
+	},
+	"keywords":
+	[
 		"license",
 		"licence",
 		"third",
@@ -27,16 +24,26 @@
 		"generate",
 		"file"
 	],
-	"scripts": {
+	"main": "dist/cli.js",
+	"types": "dist/cli.d.ts",
+	"bin":
+	{
+		"license-forge": "dist/cli.js"
+	},
+	"files": [ "dist" ],
+	"scripts":
+	{
 		"build": "tsc",
 		"lint": "eslint .",
 		"format": "eslint . --fix"
 	},
-	"dependencies": {
+	"dependencies":
+	{
 		"@commander-js/extra-typings": "14.0.0",
 		"commander": "14.0.0"
 	},
-	"devDependencies": {
+	"devDependencies":
+	{
 		"@erlinemrys/eslint-config": "0.0.4",
 		"@types/node": "22.15.29",
 		"eslint": "9.29.0",

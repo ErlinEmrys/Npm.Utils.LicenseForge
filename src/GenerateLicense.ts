@@ -1,6 +1,7 @@
+import { execFile } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { execFile } from "node:child_process";
+import process from "node:process";
 
 const MD_HEADER_FIRST_SEPARATOR = "=";
 const MD_HEADER_SECOND_SEPARATOR = "-";
@@ -89,7 +90,7 @@ function WriteOutputMD( options: IForgeOptions, data: any )
 					}
 					else
 					{
-						url = `https://spdx.org/licenses/${url}.html`;
+						url = `https://spdx.org/licenses/${ url }.html`;
 						if( IsUrl( url ) )
 						{
 							result = WriteLineMD( result, `[${ fPackage.license }](${ url })`, 2 );
@@ -122,7 +123,7 @@ function WriteHeaderMD( result: string, text: string, headerSeparator: string, i
 function WriteComplexMD( result: string, text: string, indentation = 0 )
 {
 	const lines = text.split( /\r?\n/ );
-	lines.forEach( ( line ) => result = WriteLineMD( result, line, indentation ) );
+	lines.forEach( line => result = WriteLineMD( result, line, indentation ) );
 
 	return result;
 }
@@ -168,7 +169,7 @@ function IsUrl( string: string )
 		const url = new URL( string );
 		return url.protocol === "http:" || url.protocol === "https:";
 	}
-	catch( _ )
+	catch
 	{
 		return false;
 	}
@@ -177,12 +178,12 @@ function IsUrl( string: string )
 function GetLicenceFile( packagePath: string )
 {
 	const licenseFileNames = [ "LICENSE", "LICENCE", "COPYING" ];
-	let licenseFileContent = undefined;
+	let licenseFileContent;
 
 	for( const i in licenseFileNames )
 	{
 		const regex = new RegExp( `${ licenseFileNames[ i ] }.*?`, "i" );
-		fs.readdirSync( packagePath ).some( file =>
+		fs.readdirSync( packagePath ).some( ( file ) =>
 		{
 			const match = file.match( regex );
 			if( match )
@@ -212,7 +213,7 @@ function GetLicenceFile( packagePath: string )
 
 function FormatJson( options: IForgeOptions, data: any )
 {
-	const packages: { Name: any, Version: any, Authors: any, Homepage: any, LicenseType: any, LicenseOriginal: undefined }[] = [];
+	const packages: { Name: any; Version: any; Authors: any; Homepage: any; LicenseType: any; LicenseOriginal: undefined }[] = [];
 	const result = { Packages: packages };
 	Object.keys( data ).forEach( ( licenseType ) =>
 	{
@@ -223,7 +224,12 @@ function FormatJson( options: IForgeOptions, data: any )
 			for( const i in fPackage.versions )
 			{
 				const packInfo = {
-					Name: fPackage.name.slice( fPackage.name.startsWith( "@" ) ? 1 : 0 ), Version: fPackage.versions[ i ], Authors: fPackage.author, Homepage: fPackage.homepage, LicenseType: fPackage.license, LicenseOriginal: GetLicenceFile( fPackage.paths[ i ] ),
+					Name: fPackage.name.slice( fPackage.name.startsWith( "@" ) ? 1 : 0 ),
+					Version: fPackage.versions[ i ],
+					Authors: fPackage.author,
+					Homepage: fPackage.homepage,
+					LicenseType: fPackage.license,
+					LicenseOriginal: GetLicenceFile( fPackage.paths[ i ] ),
 				};
 				packages.push( packInfo );
 			}
