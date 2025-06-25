@@ -15,7 +15,7 @@ export interface IForgeOptions
 
 export async function ProcessPackages( options: IForgeOptions )
 {
-	execFile( process.platform.startsWith( "win" ) ? "pnpm.cmd" : "pnpm", [ "licenses", "list", "--json", "--long", "-P" ], { shell: true }, ( error, stdout, stderr ) =>
+	execFile( process.platform.startsWith( "win" ) ? "pnpm.cmd" : "pnpm", [ "licenses", "list", "--json", "--long", "-P" ], { shell: true, cwd: options.Source }, ( error, stdout, stderr ) =>
 	{
 		if( error || stderr )
 		{

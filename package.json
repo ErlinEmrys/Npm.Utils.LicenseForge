@@ -2,7 +2,7 @@
 	"name": "license-forge",
 	"version": "0.0.1",
 	"description": "Utility for managing licenses",
-	"type": "commonjs",
+	"type": "module",
 	"main": "dist/cli.js",
 	"types": "dist/cli.d.ts",
 	"files": [ "dist" ],
@@ -28,14 +28,18 @@
 		"file"
 	],
 	"scripts": {
-		"build": "tsc"
+		"build": "tsc",
+		"lint": "eslint .",
+		"format": "eslint . --fix"
 	},
 	"dependencies": {
 		"@commander-js/extra-typings": "14.0.0",
 		"commander": "14.0.0"
 	},
 	"devDependencies": {
+		"@erlinemrys/eslint-config": "0.0.4",
 		"@types/node": "22.15.29",
+		"eslint": "9.29.0",
 		"ts-node": "10.9.2",
 		"typescript": "5.8.3"
 	}

@@ -79,7 +79,15 @@ export class LogSink implements ILogSink
 {
 	_allLogs: ILog[] = [];
 
-	Subscribe( log: ILog )
+	ForeachLogs = ( callback: ( item: ILog ) => void ) =>
+	{
+		this._allLogs.forEach( fLog =>
+		{
+			callback( fLog );
+		} );
+	};
+
+	Subscribe = ( log: ILog ) =>
 	{
 		this._allLogs.push( log );
 		log.OnSubscribe?.();
@@ -92,55 +100,47 @@ export class LogSink implements ILogSink
 				log.OnUnsubscribe?.();
 			}
 		};
-	}
+	};
 
-	Err( message: string, ...data: any[] )
+	Err = ( message: string, ...data: any[] ) =>
 	{
 		this.ForeachLogs( fLog =>
 		{
 			fLog.Err( message, ...data );
 		} );
-	}
+	};
 
-	Wrn( message: string, ...data: any[] )
+	Wrn = ( message: string, ...data: any[] ) =>
 	{
 		this.ForeachLogs( fLog =>
 		{
 			fLog.Wrn( message, ...data );
 		} );
-	}
+	};
 
-	Log( message: string, ...data: any[] )
+	Log = ( message: string, ...data: any[] ) =>
 	{
 		this.ForeachLogs( fLog =>
 		{
 			fLog.Log( message, ...data );
 		} );
-	}
+	};
 
-	Inf( message: string, ...data: any[] )
+	Inf = ( message: string, ...data: any[] ) =>
 	{
 		this.ForeachLogs( fLog =>
 		{
 			fLog.Inf( message, ...data );
 		} );
-	}
+	};
 
-	Dbg( message: string, ...data: any[] )
+	Dbg = ( message: string, ...data: any[] ) =>
 	{
 		this.ForeachLogs( fLog =>
 		{
 			fLog.Dbg( message, ...data );
 		} );
-	}
-
-	ForeachLogs( callback: ( item: ILog ) => void )
-	{
-		this._allLogs.forEach( fLog =>
-		{
-			callback( fLog );
-		} );
-	}
+	};
 }
 
 export const Log = new LogSink();
