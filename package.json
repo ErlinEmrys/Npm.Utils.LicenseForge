@@ -33,13 +33,14 @@
 	"files": [ "dist" ],
 	"scripts":
 	{
-		"build": "tsc",
+		"build": "rimraf dist && tsc",
 		"lint": "eslint .",
 		"format": "eslint . --fix"
 	},
 	"dependencies":
 	{
 		"@commander-js/extra-typings": "14.0.0",
+		"@erlinemrys/lib.common": "0.0.3",
 		"commander": "14.0.0"
 	},
 	"devDependencies":
@@ -47,6 +48,7 @@
 		"@erlinemrys/eslint-config": "0.0.4",
 		"@types/node": "22.15.29",
 		"eslint": "9.29.0",
+		"rimraf": "6.0.1",
 		"ts-node": "10.9.2",
 		"typescript": "5.8.3"
 	}

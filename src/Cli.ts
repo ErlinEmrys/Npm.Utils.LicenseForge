@@ -4,7 +4,7 @@ import type { IForgeOptions } from "./GenerateLicense";
 import process from "node:process";
 import { Command } from "commander";
 import { ProcessPackages } from "./GenerateLicense";
-import { ConsoleLogger } from "./Log";
+import { ConsoleLogger } from "@erlinemrys/lib.common";
 
 Log.Subscribe( new ConsoleLogger() );
 Log.Dbg( "Program START" );
